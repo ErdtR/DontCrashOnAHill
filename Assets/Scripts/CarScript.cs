@@ -44,6 +44,8 @@ public class CarScript : MonoBehaviour {
 
 	void FixedUpdate() {
 
+        Debug.Log("FixedUpdate");
+
 		frontWheel.motorSpeed = backWheel.motorSpeed;
 
 		angleCar = transform.localEulerAngles.z;

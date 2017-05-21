@@ -10,6 +10,6 @@ public class ClickScript : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		clickedIs = false;
+        clickedIs = false;
 	}
 }

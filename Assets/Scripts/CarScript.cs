@@ -39,7 +39,7 @@ public class CarScript : MonoBehaviour {
             FinishGame();
         }
 		coinsText.text = coinsInt.ToString();
-		grounded = Physics2D.OverlapCircle(bwheel.transform.position, 0.25f, map);
+		grounded = Physics2D.OverlapCircle(bwheel.transform.position, 0.50f, map);
 	}
 
 	void FixedUpdate() {

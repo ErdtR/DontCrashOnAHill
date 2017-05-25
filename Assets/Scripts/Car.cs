@@ -3,14 +3,10 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CarScript : MonoBehaviour {
+public class Car : MonoBehaviour {
 
-	WheelJoint2D[] wheelJoints;
-	JointMotor2D frontWheel;
-	JointMotor2D backWheel;
+    /*WheelJoint2D[] wheelJoints;
 
-	public float maxSpeed = -1000f;
-	private float maxBackSpeed = 1500f;
 	private float acceleration = 400f;
 	private float deacceleration = -100f;
 	public float brakeForce = 3000f;
@@ -23,16 +19,25 @@ public class CarScript : MonoBehaviour {
 	public Text coinsText;
     public CrashTriggerHandler crashHandler;
 
-	public ClickScript[] ControlCar;
+	public ClickScript[] ControlCar;*/
+
+    public WheelJoint2D backWheel;
+    public WheelJoint2D frontWheel; 
+
+    public float maxSpeed = 10000f;
+    private float acceleration = 400f;
+
+    private CarState state = CarState.Stoping;
 
 	// Use this for initialization
-	void Start () {
+	/*void Start () {
 
 		wheelJoints = gameObject.GetComponents<WheelJoint2D>();
 		backWheel = wheelJoints[1].motor;
 		frontWheel = wheelJoints[0].motor;
-	}
-	void Update()
+	}*/
+
+	/*void Update()
 	{
         if (crashHandler.IsCrashed())
         {
@@ -40,11 +45,9 @@ public class CarScript : MonoBehaviour {
         }
 		coinsText.text = coinsInt.ToString();
 		grounded = Physics2D.OverlapCircle(bwheel.transform.position, 0.50f, map);
-	}
+	}*/
 
-	void FixedUpdate() {
-
-        Debug.Log("FixedUpdate");
+	/*void FixedUpdate() {
 
 		frontWheel.motorSpeed = backWheel.motorSpeed;
 
@@ -90,9 +93,9 @@ public class CarScript : MonoBehaviour {
 
 		wheelJoints[1].motor = backWheel;
 		wheelJoints[0].motor = frontWheel;
-	}
+	}*/
 
-	void OnTriggerEnter2D(Collider2D trigger)
+	/*void OnTriggerEnter2D(Collider2D trigger)
 	{
 		if (trigger.gameObject.tag == "Coin") {
 			coinsInt++;
@@ -100,10 +103,68 @@ public class CarScript : MonoBehaviour {
 		} else if (trigger.gameObject.tag == "Finish") {
             FinishGame();
 		}
-	}
+	}*/
 
-    private void FinishGame()
+    /*private void FinishGame()
     {
         SceneManager.LoadScene(0);
+    }*/
+
+    void FixedUpdate()
+    {
+        JointMotor2D backMotor = backWheel.motor;
+        JointMotor2D frontMotor = frontWheel.motor;
+
+        float motorSpeed = backMotor.motorSpeed;
+
+        if(state == CarState.Stoping)
+        {
+            if(motorSpeed < 0)
+            {
+                //moving forward
+                motorSpeed = Mathf.Clamp(motorSpeed + acceleration * Time.deltaTime, -maxSpeed, 0);
+            }
+            else
+            {
+                //moving backward
+                motorSpeed = Mathf.Clamp(motorSpeed - acceleration * Time.deltaTime, 0, maxSpeed);
+            }
+        }
+        else if(state == CarState.MovingForward)
+        {
+            motorSpeed = Mathf.Clamp(motorSpeed - acceleration * Time.deltaTime, -maxSpeed, maxSpeed);
+        }
+        else if(state == CarState.MovingBackward)
+        {
+            motorSpeed = Mathf.Clamp(motorSpeed + acceleration * Time.deltaTime, -maxSpeed, maxSpeed);
+        }
+
+        backMotor.motorSpeed = motorSpeed;
+        frontMotor.motorSpeed = motorSpeed;
+
+        backWheel.motor = backMotor;
+        frontWheel.motor = frontMotor;
+    }
+
+    public void moveForward()
+    {
+        state = CarState.MovingForward;
+    }
+
+    public void moveBackward()
+    {
+        state = CarState.MovingBackward;
+    }
+
+    public void stopMoving()
+    {
+        state = CarState.Stoping;
+    }
+
+    private enum CarState
+    {
+        MovingForward,
+        MovingBackward,
+        Stoping
     }
 }

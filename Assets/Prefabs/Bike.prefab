@@ -305,21 +305,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1640749182408802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12a48e28037212b44b4ac57e675b1bcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e134d77a5476842861d0f89ecbf5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: -10000
-  brakeForce: 3000
-  grounded: 0
-  map:
-    serializedVersion: 2
-    m_Bits: 256
-  bwheel: {fileID: 4372989857704462}
-  coinsText: {fileID: 0}
-  crashHandler: {fileID: 114008615038763268}
-  ControlCar:
-  - {fileID: 0}
-  - {fileID: 0}
+  backWheel: {fileID: 235509888805361434}
+  frontWheel: {fileID: 235946144366543494}
+  maxSpeed: 5000
 --- !u!212 &212228178588670124
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -293,6 +293,7 @@ MonoBehaviour:
   backWheel: {fileID: 235023747448509850}
   frontWheel: {fileID: 235841864545837654}
   maxSpeed: 10000
+  crashTrigger: {fileID: 114502390144908098}
 --- !u!114 &114502390144908098
 MonoBehaviour:
   m_ObjectHideFlags: 1

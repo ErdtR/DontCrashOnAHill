@@ -7,5 +7,11 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/menu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/game.unity
+  - enabled: 1
+    path: Assets/Scenes/field-level.unity
+  - enabled: 1
+    path: Assets/Scenes/forest-level.unity
+  - enabled: 1
+    path: Assets/Scenes/desert-level.unity

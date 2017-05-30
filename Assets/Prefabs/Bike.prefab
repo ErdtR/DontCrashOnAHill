@@ -275,7 +275,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -311,6 +311,7 @@ MonoBehaviour:
   backWheel: {fileID: 235509888805361434}
   frontWheel: {fileID: 235946144366543494}
   maxSpeed: 5000
+  crashTrigger: {fileID: 114008615038763268}
 --- !u!212 &212228178588670124
 SpriteRenderer:
   m_ObjectHideFlags: 1
